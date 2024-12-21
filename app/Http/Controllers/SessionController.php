@@ -43,7 +43,7 @@ class SessionController extends Controller
         if (Auth::attempt($infologin)) {
             // Login berhasil
             $user = Auth::user(); // Ambil user yang sedang login
-            $user->setLoginStatus(true); // Set status_login = 1 dan generate token_login
+            $user->setLoginStatus(true); // Set status_login = 1 dan generate token_login.
 
             return redirect('/home');
         }else{
