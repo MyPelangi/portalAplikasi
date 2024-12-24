@@ -13,26 +13,27 @@ class PasswordController extends Controller
 {
     public function sendResetLink(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email_pegawai', $request->email)->first();
+
         if (!$user) {
-            return redirect('/forgot-password')->withErrors('User not found');
+            return redirect('/forgot-password')->withErrors('Pengguna tidak ditemukan.');
         }
 
         $token = Str::random(64);
 
         // Hapus token lama, jika ada
-        DB::table('password_resets')->where('email', $user->email)->delete();
+        DB::table('password_resets')->where('email', $user->email_pegawai)->delete();
 
         // Simpan token baru ke tabel password_resets
         DB::table('password_resets')->insert([
-            'email' => $user->email,
+            'email' => $user->email_pegawai,
             'token' => $token,
             'created_at' => now(),
         ]);
 
         $resetLink = url('/confirm-reset/' . $token);
         Mail::send('auth.mailResetPassword', ['link' => $resetLink], function ($message) use ($user) {
-            $message->to($user->email);
+            $message->to($user->email_pegawai);
             $message->subject('Reset Password');
         });
 
@@ -47,21 +48,21 @@ class PasswordController extends Controller
         }
 
         // Dapatkan user berdasarkan email
-        $user = User::where('email', $passwordReset->email)->first();
+        $user = User::where('email_pegawai', $passwordReset->email)->first();
 
         // Generate password baru
         $newPassword = Str::random(8);
 
         // Update password di database
-        $user->password = Hash::make($newPassword);
+        $user->pass_pegawai = Hash::make($newPassword);
         $user->save();
 
         // Hapus token setelah reset selesai
-        DB::table('password_resets')->where('email', $user->email)->delete();
+        DB::table('password_resets')->where('email', $user->email_pegawai)->delete();
 
         // Kirim email dengan password baru
-        Mail::send('auth.mailNewPassword', ['name' => $user->name, 'password' => $newPassword], function ($message) use ($user) {
-            $message->to($user->email);
+        Mail::send('auth.mailNewPassword', ['name' => $user->usernamePegawai, 'password' => $newPassword], function ($message) use ($user) {
+            $message->to($user->email_pegawai);
             $message->subject('Your New Password');
         });
 

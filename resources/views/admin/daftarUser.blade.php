@@ -8,8 +8,8 @@
         <div class="card">
             <div class="card-header row">
                 <h5 class="col-6 title">Daftar User</h5>
-                <div class="col-2">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahUserModal">
+                <div class="">
+                    <button type="button" class="tambahuser btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahUserModal">
                         + Tambah User
                     </button>
                     @include('admin/tambahUser')

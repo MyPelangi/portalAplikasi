@@ -1,25 +1,25 @@
 @extends('layouts.main')
 
 @section('container')
-<div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="border rounded px-5 py-5">
-        <img class="w-75 mb-3" src="https://koranbumn.com/wp-content/uploads/2020/11/briin.png" alt="">
+<div class="logincontainer">
+    <div class="login">
+        <img class="logobrins mb-3" src="https://koranbumn.com/wp-content/uploads/2020/11/briin.png" alt="">
         <form action="{{ route('forgot-password') }}" method="POST">
             @include('partials/pesan')
             @csrf
-            <div class="mb-3 w-75">
+            <div class="form-group mb-3">
                 <label for="name" class="form-label">Email Kantor</label>
-                <input type="email" name="email" class="form-control">
+                <input type="email" id="email" name="email" class="form-control">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-danger w-100">Request Password Reset</button>
             </div>
             <div class="mb-1">
-                <button type="submit" class="btn btn-danger">Request Password Reset</button>
-            </div>
-            <div class="mb-1">
-                <a class="btn btn-primary" href="/">Login</a>
+                <a class="btn btn-primary w-100" href="/">Login</a>
             </div>
         </form>
     </div>
-    <div class="title w-50 ms-5 px-5">
+    <div class="lupapasstitle">
         <h3 class="mb-auto">Portal Aplikasi</h3>
         <p><b>BRI ASURANSI INDONESIA</b></p>
         <br>

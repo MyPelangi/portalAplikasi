@@ -16,41 +16,41 @@ class SessionController extends Controller
         return view('sesi/login');
     }
 
-    public function login(Request $request){
-        Session::flash('name', $request->username);
+    public function login(Request $request)
+    {
+        Session::flash('usernamePegawai', $request->username);
+
+        // Validasi input
         $request->validate([
             'username' => 'required',
             'password' => 'required',
             'captcha' => 'required|captcha'
-        ],[
+        ], [
             'username.required' => 'Nama wajib diisi',
             'password.required' => 'Password wajib diisi',
             'captcha.required' => 'Captcha wajib diisi',
             'captcha.captcha' => 'Captcha tidak valid',
         ]);
 
-         // Cek apakah pengguna dengan username ini memiliki status_p = 1
-        $user = \App\Models\User::where('name', $request->username)->first();
+        // Cek apakah pengguna dengan usernamePegawai ini memiliki status_p = 1
+        $user = \App\Models\User::where('usernamePegawai', $request->username)->first();
         if (!$user || $user->status_p != 1) {
             return redirect('/')->withErrors('Akun Anda tidak diizinkan untuk login.');
         }
 
-        $infologin = [
-            'name' => $request->username,
-            'password' => $request->password
-        ];
-
-        if (Auth::attempt($infologin)) {
-            // Login berhasil
-            $user = Auth::user(); // Ambil user yang sedang login
-            $user->setLoginStatus(true); // Set status_login = 1 dan generate token_login.
+        // Cek kecocokan password dengan hash yang ada di database
+        if (Hash::check($request->password, $user->pass_pegawai)) {
+            // Password valid
+            Auth::login($user); // Login pengguna
+            $user->setLoginStatus(true); // Set status_login = 1 dan generate token_login
 
             return redirect('/home');
-        }else{
-            // kalau otentikasi gagal
+        } else {
+            // Kalau otentikasi gagal
             return redirect('/')->withErrors('Username dan password yang dimasukkan tidak valid');
         }
     }
+
 
     public function logout(Request $request)
     {

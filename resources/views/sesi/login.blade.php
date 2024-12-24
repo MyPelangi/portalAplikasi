@@ -1,16 +1,23 @@
 @extends('layouts.main')
 
 @section('container')
-<div class="logincontainer d-flex justify-content-center align-items-center vh-100">
-    <div class="login border rounded px-4 py-4" style="width: 400px;">
-        <img class="logobrins mb-4" style="width: 300px;" src="https://koranbumn.com/wp-content/uploads/2020/11/briin.png" alt="">
+<div class="logincontainer">
+    <div class="logintitle">
+        <img class="logobrins" src="img/logo.png" alt="">
+        <h4>Portal Aplikasi BRI Asuransi Indonesia</h4>
+    </div>
+    <div class="login">
+        <h3>LOGIN</h3>
         <form action="/sesi/login" method="POST">
             @include('partials/pesan')
             @csrf
             <div class="mb-3">
                 <div class="form-group">
                     <label for="username" class="form-label">Nama</label>
-                    <input type="text" placeholder="Masukkan nama" value="{{ Session::get('username')}}" name="username" class="form-control">
+                    <input type="text" placeholder="Masukkan nama" value="{{ Session::get('username')}}" id="username" name="username" class="form-control">
+                    @error('username')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
             </div>
             <div class="mb-3">
@@ -18,6 +25,9 @@
                     <label for="password" class="form-label">Password</label>
                     <input type="password" placeholder="Masukkan password" name="password" id="password" class="form-control">
                     <i class="fa fa-eye passwordshow"></i>
+                    @error('password')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
             </div>
             <div class="form-group mt-2 mb-2">
@@ -28,11 +38,14 @@
                     </button>
                 </div>
             </div>
-            <div class="form-group mt-2 mb-2">
-                <input type="text" class="form-control" placeholder="Masukkan captcha" name="captcha">
+            <div class="form-group mt-2 mb-3">
+                <input type="text" class="form-control" placeholder="Masukkan captcha" id="captcha" name="captcha">
+                @error('captcha')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
-            <div class="mb-3 d-grid">
-                <button type="submit" class="btn btn-primary">Login</button>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary w-100">Login</button>
             </div>
         </form>
         <a href="/forgot-password">forgot password?</a>

@@ -17,7 +17,7 @@
                                 <input type="password" placeholder="Password lama" id="current_password" name="current_password" class="form-control">
                                 <i class="fa fa-eye password-show"></i>
                                 @error('current_password')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                                 <input type="password" placeholder="Password baru" id="password" name="password" class="form-control">
                                 <i class="fa fa-eye password-show"></i>
                                 @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                                 <input type="password" placeholder="Konformasi Password Baru" id="password_confirmation" name="password_confirmation" class="form-control">
                                 <i class="fa fa-eye password-show"></i>
                                 @error('password_confirmation')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                         </div>

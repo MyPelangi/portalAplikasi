@@ -20,48 +20,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // $search = $request->input('search'); // Ambil nilai pencarian dari query parameter
 
-    // $data = User::query()
-    //     ->when($search, function ($query, $search) {
-    //         $query->where('nm_pegawai', 'like', '%' . $search . '%')
-    //             ->orWhere('kd_pegawai', 'like', '%' . $search . '%');
-    //     })
-    //     ->orderBy('status_p', 'desc')
-    //     ->get();
-
-    // if ($request->ajax()) {
-    //     $data = User::with('cabang')->get(); // Pastikan relasi cabang sudah ada
-    //     // dd($data);
-    //     // $data = User::all();
-    //     return DataTables::of($data)
-    //         ->addIndexColumn()
-    //         ->addColumn('nm_email', function ($row) {
-    //             return '<p style="margin: 0">' . $row->nm_pegawai . '</p>' .
-    //                    '<a href="#">' . $row->email . '</a>';
-    //         })
-    //         ->addColumn('username_id', function ($row) {
-    //             return $row->name . ' <span>(' . $row->kd_pegawai . ')</span>';
-    //         })
-    //         ->addColumn('cabang', function ($row) {
-    //             return $row->cabang->nama_cabang ?? 'Cabang tidak ditemukan';
-    //         })
-    //         ->addColumn('bidang', function ($row) {
-    //             return $row->kd_bidang;
-    //         })
-    //         ->addColumn('action', function ($row) {
-    //             $akses = '<a class="btn btn-success btn-sm" href="' . route('daftarUser.show', ['daftarUser' => $row->id]) . '">Akses</a>';
-    //             $edit = '<a class="btn btn-warning btn-sm" href="' . route('daftarUser.edit', ['daftarUser' => $row->id]) . '">Edit</a>';
-    //             $reset = '<a href="#" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#resetPasswordModal' . $row->id . '">Reset Pass</a>';
-    //             $status = $row->status_p == 1
-    //                 ? '<a class="btn btn-danger btn-sm" href="' . route('users.toggleStatus', $row->id) . '">Nonaktif</a>'
-    //                 : '<a class="btn btn-primary btn-sm" href="' . route('users.toggleStatus', $row->id) . '">Aktifkan</a>';
-
-    //             return '<div class="aksi">' . $akses . ' ' . $edit . ' ' . $reset . ' ' . $status . '</div>';
-    //         })
-    //         ->rawColumns(['action'])
-    //         ->make(true);
-    // }
     public function index(Request $request)
     {
 
@@ -70,10 +29,10 @@ class UserController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('nama_email', function ($row) {
-                    return $row->nm_pegawai . '<br><a>' . $row->email . '</a>';
+                    return $row->nm_pegawai . '<br><a>' . $row->email_pegawai . '</a>';
                 })
                 ->addColumn('name_id', function ($row) {
-                    return $row->name . ' (' . $row->kd_pegawai . ')';
+                    return $row->usernamePegawai . ' (' . $row->kd_pegawai . ')';
                 })
                 ->addColumn('cabang', function ($row) {
                     return $row->cabang ? $row->cabang->nama_cabang : '-';
@@ -129,31 +88,32 @@ class UserController extends Controller
     public function store(Request $request)
     {
         try {
+            // Validasi input
+            $validated = $request->validate([
+                'nip' => 'required|unique:users,kd_pegawai|max:20',
+                'unitkerja' => 'required|exists:ms_unitkerja,KodeUnit|max:50', // Validasi pilihan dropdown
+                'nama_pegawai' => 'required|max:50',
+                'username' => 'required|unique:users,usernamePegawai|max:50', // Ganti 'name' dengan 'usernamePegawai'
+                'password' => 'required|min:6|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|max:255',
+                'email' => 'required|email|max:50',
+                'usercare' => 'required|exists:sysuser,ID_SyUser|max:50',
+                'jabatan' => 'required|exists:jabatan,ID_Jabatan|max:50',
+                'cabang' => 'required|exists:cab_aplikasi,kd|max:50',
+            ]);
 
-        $validated = $request->validate([
-            'nip' => 'required|unique:users,kd_pegawai',
-            'unitkerja' => 'required|exists:ms_unitkerja,KodeUnit', // Validasi pilihan dropdown
-            'nama_pegawai' => 'required',
-            'username' => 'required|unique:users,name',
-            'password' => 'required|min:6|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/',
-            'email' => 'required|email',
-            'usercare' => 'required|exists:sysuser,ID_SyUser',
-            'jabatan' => 'required|exists:jabatan,ID_Jabatan',
-            'cabang' => 'required|exists:cab_aplikasi,kd',
-        ]
-        );
-        // Simpan data ke tabel users
-        $data = [
-            'kd_pegawai' => $validated['nip'],
-            'KodeUnit' => $validated['unitkerja'],
-            'nm_pegawai' => $validated['nama_pegawai'],
-            'name' => $validated['username'],
-            'password' => bcrypt($validated['password']), // Amankan password
-            'email' => $validated['email'],
-            'userCare' => $validated['usercare'],
-            'role' => $validated['jabatan'], // Simpan kode jabatan
-            'kd_cabang' => $validated['cabang'],
-        ];
+            // Simpan data ke tabel users
+            $data = [
+                'kd_pegawai' => $validated['nip'],
+                'KodeUnit' => $validated['unitkerja'],
+                'nm_pegawai' => $validated['nama_pegawai'],
+                'usernamePegawai' => $validated['username'], // Ganti 'name' dengan 'usernamePegawai'
+                'pass_pegawai' => bcrypt($validated['password']), // Ganti 'password' menjadi 'pass_pegawai'
+                'email_pegawai' => $validated['email'], // Ganti 'email' menjadi 'email_pegawai'
+                'userCare' => $validated['usercare'],
+                'role' => $validated['jabatan'], // Simpan kode jabatan
+                'kd_cabang' => $validated['cabang'],
+            ];
+
             // Proses simpan data
             $result = User::create($data);
             return redirect()->route('daftarUser.index')->with('berhasil', 'User berhasil ditambahkan!');
@@ -165,6 +125,7 @@ class UserController extends Controller
                 ->with('openModal', 'tambahUserModal');
         }
     }
+
 
 
 
@@ -218,7 +179,7 @@ class UserController extends Controller
             'unitkerja' => 'nullable|exists:ms_unitkerja,KodeUnit',
             'nama_pegawai' => 'nullable|string',
             'cabang' => 'nullable|exists:cab_aplikasi,kd',
-            'username' => "nullable|unique:users,name,{$id},id",
+            'username' => "nullable|unique:users,usernamePegawai,{$id},id",
             'usercare' => 'nullable|exists:sysuser,ID_SyUser',
             'email' => 'nullable|email',
             'jabatan' => 'nullable|exists:jabatan,ID_Jabatan',
@@ -234,9 +195,9 @@ class UserController extends Controller
                 'KodeUnit' => $request->input('unitkerja'),
                 'nm_pegawai' => $request->input('nama_pegawai'),
                 'kd_cabang' => $request->input('cabang'),
-                'name' => $request->input('username'),
+                'usernamePegawai' => $request->input('username'),
                 'userCare' => $request->input('usercare'),
-                'email' => $request->input('email'),
+                'email_pegawai' => $request->input('email'),
                 'role' => $request->input('jabatan'),
                 'status_p' => $request->input('status'),
         ], function ($value) {
@@ -295,7 +256,7 @@ class UserController extends Controller
             ]);
 
             $user = User::findOrFail($id);
-            $user->password = bcrypt($request->passwordbaru);
+            $user->pass_pegawai = bcrypt($request->passwordbaru);
             $user->save();
 
             return redirect()->back()->with('berhasil', 'Password berhasil direset.');

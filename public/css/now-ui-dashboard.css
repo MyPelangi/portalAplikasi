@@ -5044,6 +5044,10 @@ Created using IcoMoon - icomoon.io
   height: 500px;
 }
 
+.card-header .tambahuser {
+    margin: 0 15px;
+}
+
 @media screen and (max-width: 991px) {
   .profile-photo .profile-photo-small {
     margin-left: -2px;
@@ -5162,6 +5166,7 @@ Created using IcoMoon - icomoon.io
     box-shadow: none;
   }
 
+
   #bodyClick {
     height: 100%;
     width: 100%;
@@ -5217,6 +5222,15 @@ Created using IcoMoon - icomoon.io
     -o-transform: translate3d(-260px, 0, 0);
     -ms-transform: translate3d(-260px, 0, 0);
     transform: translate3d(-260px, 0, 0);
+  }
+
+  .sidebar-visible {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
   }
 
   .bar1,
@@ -5672,6 +5686,10 @@ Created using IcoMoon - icomoon.io
     float: right;
     padding-right: 15px;
   }
+
+  .logobrins {
+    width: 250px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -5747,6 +5765,9 @@ Created using IcoMoon - icomoon.io
 
   .page-header .container h6.category-absolute {
     width: 90%;
+  }
+  .logobrins {
+    width: 250px;
   }
 }
 
@@ -6226,28 +6247,62 @@ Created using IcoMoon - icomoon.io
     transition-timing-function: cubic-bezier(0.685, 0.0473, 0.346, 1);
     -webkit-overflow-scrolling: touch;
   }
+  .logobrins {
+    width: 250px;
+}
+}
 
-  /* ubah password */
-  .form-ubahpass{
+/* ubah password */
+.form-ubahpass{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
+}
 
   /* login container w-25 border rounded px-4 py-4*/
-  .logincontainer .login{
-    border: solid 1px lightgray !important;
-    border-radius: 5px !important;
-    padding: 30px !important;
-    width: 400px !important;
-  }
 
-  .login .logobrins {
-    width: 200px;
-  }
+.logincontainer{
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+    background: #141E30;
+    /* fallback for old browsers */
+    background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
+    background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
+    /* background: linear-gradient(to right, #0c2646 0%, #7292b6 60%, #0d2d52 100%); */
+}
 
+.logintitle{
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+.logobrins {
+    width: 300px;
+}
 
+.login{
+    border: solid 1px lightgray;
+    border-radius: 10px;
+    padding: 30px;
+    width: 420px;
+    box-shadow: #000000;
+    background-color: #ffffff;
+}
+
+.login h3{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.lupapasstitle{
+    color: #ffffff;
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */

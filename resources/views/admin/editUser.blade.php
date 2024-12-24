@@ -16,7 +16,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="nomor_induk_pegawai" class="form-label">Nomor Induk Pegawai</label>
-                                <input type="text" placeholder="Nomor induk pegawai" value="{{ $data->kd_pegawai }}" id="nip" name="nip" class="form-control">
+                                <input type="text" placeholder="Nomor induk pegawai" value="{{ $data->kd_pegawai }}" id="nip" name="nip" class="form-control"  autocomplete="off">
                                 @error('nip')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -39,7 +39,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
-                                <input type="text" value="{{ $data->nm_pegawai }}" id="nama_pegawai" name="nama_pegawai" class="form-control">
+                                <input type="text" value="{{ $data->nm_pegawai }}" id="nama_pegawai" name="nama_pegawai" class="form-control" autocomplete="off">
                                 @error('nama_pegawai')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -62,7 +62,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" placeholder="Username" value="{{ $data->name }}" id="username" name="username" class="form-control">
+                                <input type="text" placeholder="Username" value="{{ $data->usernamePegawai }}" id="username" name="username" class="form-control" autocomplete="off">
                                 @error('username')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -85,7 +85,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" placeholder="Email" id="email" value="{{ $data->email }}" name="email" class="form-control">
+                                <input type="email" placeholder="Email" id="email" value="{{ $data->email_pegawai }}" name="email" class="form-control" autocomplete="off">
                                 @error('email')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror

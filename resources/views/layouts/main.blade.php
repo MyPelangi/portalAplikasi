@@ -48,7 +48,6 @@
 
     <!--   Core JS Files   -->
     {{-- <script src="{{ asset('js/perfect-scrollbar.jquery.min.js') }}"></script> --}}
-
     <script>
       $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
@@ -64,6 +63,18 @@
             minScrollbarLength: 20  // Panjang minimum scrollbar
         });
         });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleButton = document.getElementById('sidebar-toggle');
+        const body = document.body;
+
+        if (toggleButton) {
+            toggleButton.addEventListener('click', function () {
+                body.classList.toggle('nav-open'); // Toggle sidebar
+                toggleButton.classList.toggle('toggled'); // Toggle kelas pada tombol
+            });
+        }
+    });
     </script>
   </body>
 </html>
