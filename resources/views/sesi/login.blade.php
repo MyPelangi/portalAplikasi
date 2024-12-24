@@ -4,7 +4,8 @@
 <div class="logincontainer">
     <div class="logintitle">
         <img class="logobrins" src="img/logo.png" alt="">
-        <h4>Portal Aplikasi BRI Asuransi Indonesia</h4>
+        <h5>Portal Aplikasi BRI Asuransi Indonesia</h5>
+        <img style="width:500px;" src="img/illustrasi.svg" alt="">
     </div>
     <div class="login">
         <h3>LOGIN</h3>

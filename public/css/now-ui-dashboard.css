@@ -4949,6 +4949,8 @@ Created using IcoMoon - icomoon.io
 }
 
 .author .description {
+    margin-left: 10px;
+    text-align: left;
     color: #000000;
 
 }
@@ -6264,21 +6266,20 @@ Created using IcoMoon - icomoon.io
 
 .logincontainer{
     display: flex;
-    /* flex-direction: column; */
     align-items: center;
     justify-content: space-evenly;
     height: 100vh;
+    /* background-image: url(\img\foam-dark-blue-water.jpg); */
     background: #141E30;
-    /* fallback for old browsers */
     background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
-    background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
-    /* background: linear-gradient(to right, #0c2646 0%, #7292b6 60%, #0d2d52 100%); */
+    background: linear-gradient(to right #0c2646 0%, #204065 60%, #2a5788 100%);
 }
 
 .logintitle{
     color: #ffffff;
     display: flex;
     flex-direction: column;
+    /* width: 600px; */
     /* justify-content: center; */
     align-items: center;
 }
@@ -6287,10 +6288,15 @@ Created using IcoMoon - icomoon.io
 }
 
 .login{
+    display: flex;
+    flex-direction: column; /* Atur konten secara vertikal */
+    /* align-items: center;    Meratakan secara horizontal */
+    justify-content: center;
     border: solid 1px lightgray;
     border-radius: 10px;
     padding: 30px;
-    width: 420px;
+    width: 450px;
+    height: 500px;
     box-shadow: #000000;
     background-color: #ffffff;
 }
@@ -6303,6 +6309,20 @@ Created using IcoMoon - icomoon.io
 
 .lupapasstitle{
     color: #ffffff;
+}
+
+.formkirimemail{
+    display: flex;
+    flex-direction: column; /* Atur konten secara vertikal */
+    /* align-items: center;    Meratakan secara horizontal */
+    justify-content: center;
+    border: solid 1px lightgray;
+    border-radius: 10px;
+    padding: 30px;
+    width: 450px;
+    /* height: 500px; */
+    box-shadow: #000000;
+    background-color: #ffffff;
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */

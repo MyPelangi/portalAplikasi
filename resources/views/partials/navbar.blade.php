@@ -27,7 +27,7 @@
                             <div class="description">
                                 <p>{{ Auth::user()->nm_pegawai }}</p>
                                 <p>
-                                Cabang : {{ Auth::user()->cabang->nama_cabang ?? 'Cabang tidak ditemukan' }}
+                                Cabang : <span><b> {{ Auth::user()->cabang->nama_cabang ?? 'Cabang tidak ditemukan' }}</b></span>
                                 </p>
                             </div>
                         </div>

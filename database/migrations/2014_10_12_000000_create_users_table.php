@@ -25,17 +25,17 @@ class CreateUsersTable extends Migration
             $table->string('userCareSH',50)->nullable();
             $table->string('type',50)->nullable();
             $table->string('role')->nullable();
-            $table->string('name',50)->nullable();
-            $table->string('password')->nullable();
-            $table->string('email',50)->nullable();
+            $table->string('usernamePegawai',50)->nullable();
+            $table->string('pass_pegawai',255)->nullable();
+            $table->string('email_pegawai',50)->nullable();
             $table->string('unit_kerja',50)->nullable();
-            $table->boolean('status_p',50)->nullable();
+            $table->boolean('status_p')->nullable();
             $table->string('level_p',50)->nullable();
             $table->string('kd_cabang',10)->nullable();
             $table->string('id_useraplikasi',50)->nullable();
             $table->string('role_portal',50)->nullable();
-            $table->boolean('status_reset',50)->nullable();
-            $table->boolean('status_login',50)->nullable();
+            $table->boolean('status_reset')->nullable();
+            $table->boolean('status_login')->nullable();
             $table->string('token_login',50)->nullable();
             $table->timestamps(); // Kolom created_at dan updated_at
         });

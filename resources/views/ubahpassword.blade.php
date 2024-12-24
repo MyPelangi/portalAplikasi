@@ -11,7 +11,7 @@
                     <form action="{{ route('password.update') }}" method="POST">
                         {{-- @include('partials/pesan') --}}
                         @csrf
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-5 mb-3">
                             <div class="form-group">
                                 <label for="current_password" class="form-label">Password lama</label>
                                 <input type="password" placeholder="Password lama" id="current_password" name="current_password" class="form-control">
@@ -21,7 +21,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-5 mb-3">
                             <div class="form-group">
                                 <label class="form-label">Password baru</label>
                                 <input type="password" placeholder="Password baru" id="password" name="password" class="form-control">
@@ -31,7 +31,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-5 mb-3">
                             <div class="form-group">
                                 <label class="form-label">Konfirmasi password baru</label>
                                 <input type="password" placeholder="Konformasi Password Baru" id="password_confirmation" name="password_confirmation" class="form-control">
@@ -41,7 +41,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-2">
+                        <div class="modal-footer">
                             <button class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
