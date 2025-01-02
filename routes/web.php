@@ -18,16 +18,6 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ApplicationsController;
 use App\Http\Controllers\UbahPasswordController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [ApplicationsController::class, 'internal'])->name('internal');
     Route::get('/eksternal', [ApplicationsController::class, 'eksternal'])->name('eksternal');
