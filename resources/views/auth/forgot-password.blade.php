@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-<div class="logincontainer">
+<div class="emailcontainer">
     <div class="formkirimemail">
         <img class="logobrins mb-3" src="https://koranbumn.com/wp-content/uploads/2020/11/briin.png" alt="">
         <form action="{{ route('forgot-password') }}" method="POST">

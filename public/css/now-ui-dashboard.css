@@ -560,7 +560,8 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 }
 
 .btn-primary {
-  background-color: #f96332;
+  /* background-color: #f96332; */
+  background-color: #204065;
   color: #FFFFFF;
 }
 
@@ -575,10 +576,12 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 .show>.btn-primary.dropdown-toggle,
 .show>.btn-primary.dropdown-toggle:focus,
 .show>.btn-primary.dropdown-toggle:hover {
-  background-color: #fa7a50;
+  /* background-color: #fa7a50; */
+  background-color: #2a5788;
   color: #FFFFFF;
   box-shadow: none;
-  border-color: #fa7a50;
+  /* border-color: #fa7a50; */
+  border-color: #2a5788;
 }
 
 .btn-primary:not([data-action]):not([class*="btn-outline-"]):hover {
@@ -2512,6 +2515,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
   vertical-align: middle;
   outline: 0;
   cursor: pointer;
+  margin-top: 15px;
 }
 
 .navbar .navbar-toggler .navbar-toggler-bar.navbar-kebab {
@@ -3638,8 +3642,15 @@ Created using IcoMoon - icomoon.io
   text-decoration: none;
   width: 100%;
   color: #000000;
-  padding: 30px 5px;
+  padding: auto 5px;
   font-size: 14px;
+}
+
+.all-icons .font-icon-detail:hover{
+    cursor: pointer;
+    background-color: #f96332;
+    box-shadow: 0px 0px 5px #f96332;
+    color: #ffffff;
 }
 
 .all-icons .disabled {
@@ -3656,20 +3667,41 @@ Created using IcoMoon - icomoon.io
   width: 100%;
   background-color: rgb(221, 218, 218);
   color: grey;
-  padding: 30px 5px;
+  padding: auto 5px;
   font-size: 14px;
-  }
+  pointer-events: auto; /* Aktifkan kembali hover */
+  position: relative;
+}
 
 
-.all-icons .font-icon-detail:hover{
-    cursor: pointer;
-    background-color: #f96332;
-    box-shadow: 0px 0px 5px #f96332;
-    color: #ffffff;
+.disabled[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+.disabled[data-tooltip]:hover::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.75) transparent;
+    z-index: 1000;
 }
 
 .all-icons [class*="now-ui-icons"] {
-    /* color: gray; */
     font-size: 28px;
     margin-bottom: 8px;
 }
@@ -3901,13 +3933,9 @@ Created using IcoMoon - icomoon.io
 }
 
 .tableAkses {
-    /* display: flex; */
     align-items: center;
-    /* justify-content: center; */
     margin: 50px auto;
-    /* background-color:#00bbff; */
     /* width: max-content; */
-    width: max-content;
     border: 1px solid #0c2646;
 
 }
@@ -3942,7 +3970,7 @@ Created using IcoMoon - icomoon.io
 .wrapper {
   position: relative;
   top: 0;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .wrapper.wrapper-full-page {
@@ -5660,6 +5688,19 @@ Created using IcoMoon - icomoon.io
     -ms-transform: translate3d(260px, 0, 0);
     transform: translate3d(260px, 0, 0);
   }
+
+    .logincontainer .logintitle{
+        display: none;
+    }
+
+    .emailcontainer{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .formkirimemail .logobrins{
+        display: none;
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -5731,6 +5772,14 @@ Created using IcoMoon - icomoon.io
     margin-left: 0;
     margin-bottom: 30px;
   }
+
+  .navbar-brand{
+    display: none;
+  }
+
+  .logincontainer .logintitle{
+    display: none;
+}
 }
 
 @media screen and (max-width: 576px) {
@@ -5771,6 +5820,13 @@ Created using IcoMoon - icomoon.io
   .logobrins {
     width: 250px;
   }
+  .navbar-brand{
+    display: none;
+  }
+
+  .logincontainer .logintitle{
+    display: none;
+}
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
@@ -6251,7 +6307,10 @@ Created using IcoMoon - icomoon.io
   }
   .logobrins {
     width: 250px;
-}
+    }
+    .logincontainer .logintitle{
+        display: none;
+    }
 }
 
 /* ubah password */
@@ -6269,34 +6328,39 @@ Created using IcoMoon - icomoon.io
     align-items: center;
     justify-content: space-evenly;
     height: 100vh;
-    /* background-image: url(\img\foam-dark-blue-water.jpg); */
     background: #141E30;
     background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
     background: linear-gradient(to right #0c2646 0%, #204065 60%, #2a5788 100%);
 }
 
-.logintitle{
+.logincontainer .logintitle{
     color: #ffffff;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    /* width: 600px; */
-    /* justify-content: center; */
-    align-items: center;
-}
-.logobrins {
-    width: 300px;
+    align-items: center; */
 }
 
+.logobrins{
+    width: 100%;
+}
+
+.logobrins img{
+    width: 300px;
+    margin: 0 20%;
+}
+
+.logintitle h5{
+    text-align: center;
+}
 .login{
     display: flex;
-    flex-direction: column; /* Atur konten secara vertikal */
-    /* align-items: center;    Meratakan secara horizontal */
+    flex-direction: column;
     justify-content: center;
     border: solid 1px lightgray;
     border-radius: 10px;
     padding: 30px;
     width: 450px;
-    height: 500px;
+    height: auto;
     box-shadow: #000000;
     background-color: #ffffff;
 }
@@ -6311,16 +6375,24 @@ Created using IcoMoon - icomoon.io
     color: #ffffff;
 }
 
+.emailcontainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100vh;
+    background: #141E30;
+    background: -webkit-gradient(linear, left top, right top, from(#0c2646), color-stop(60%, #204065), to(#2a5788));
+    background: linear-gradient(to right #0c2646 0%, #204065 60%, #2a5788 100%);
+}
+
 .formkirimemail{
     display: flex;
-    flex-direction: column; /* Atur konten secara vertikal */
-    /* align-items: center;    Meratakan secara horizontal */
+    flex-direction: column;
     justify-content: center;
     border: solid 1px lightgray;
     border-radius: 10px;
     padding: 30px;
     width: 450px;
-    /* height: 500px; */
     box-shadow: #000000;
     background-color: #ffffff;
 }

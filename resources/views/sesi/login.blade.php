@@ -3,19 +3,20 @@
 @section('container')
 <div class="logincontainer">
     <div class="logintitle">
-        <img class="logobrins" src="img/logo.png" alt="">
+        <div class="logobrins">
+            <img src="img/logo.png" alt="">
+        </div>
         <h5>Portal Aplikasi BRI Asuransi Indonesia</h5>
         <img style="width:500px;" src="img/illustrasi.svg" alt="">
     </div>
     <div class="login">
         <h3>LOGIN</h3>
         <form action="/sesi/login" method="POST">
-            @include('partials/pesan')
             @csrf
             <div class="mb-3">
                 <div class="form-group">
                     <label for="username" class="form-label">Nama</label>
-                    <input type="text" placeholder="Masukkan nama" value="{{ Session::get('username')}}" id="username" name="username" class="form-control">
+                    <input type="text" placeholder="Masukkan nama" value="{{ old('username')}}" id="username" name="username" class="form-control">
                     @error('username')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -53,33 +54,7 @@
     </div>
 </div>
 
-<!-- Load jQuery jika belum ada -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('#reload').click(function(){
-            $.ajax({
-                type: 'GET',
-                url: 'reload-captcha',
-                success: function(data) {
-                    $(".captcha span").html(data.captcha);
-                }
-            });
-        });
-    });
-
-    $(function(){
-        $(".passwordshow").click(function(event) {
-            $(this).toggleClass('fa-eye fa-eye-slash');
-            var x = $("#password").attr("type"); // mendapatkan tipe input saat ini
-            if(x == "password"){
-                $("#password").attr("type","text");
-            }else{
-                $("#password").attr("type","password");
-            }
-        });
-    });
-</script>
+<script src="{{ asset('js/asset.js') }}"></script>
 
 @endsection

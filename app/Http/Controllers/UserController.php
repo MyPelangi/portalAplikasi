@@ -38,10 +38,10 @@ class UserController extends Controller
                     return $row->cabang ? $row->cabang->nama_cabang : '-';
                 })
                 ->addColumn('bidang', function ($row) {
-                    return $row->kd_bidang;
+                    return $row->kd_bidang ? $row->kd_bidang : '-';
                 })
                 ->addColumn('action', function ($row) {
-                    $akses = '<a class="btn btn-success btn-sm" title="Akses" href="' . route('daftarUser.show', ['daftarUser' => $row->id]) . '"><i class="fa-solid fa-key"></i></a>';
+                    $akses = '<a class="btn btn-success btn-sm" title="Akses Aplikasi" href="' . route('daftarUser.show', ['daftarUser' => $row->id]) . '"><i class="fa-solid fa-key"></i></a>';
                     $edit = '<a class="btn btn-outline-warning btn-sm" title="Edit user" href="' . route('daftarUser.edit', ['daftarUser' => $row->id]) . '"><i class="fa-solid fa-pen"></i></a>';
                     $reset = '<a href="" class="btn btn-warning btn-sm" title="Reset Password" data-bs-toggle="modal" data-bs-target="#resetPasswordModal' . $row->id . '"><i class="fa-solid fa-lock"></i></a>';
                     $status = $row->status_p == 1
@@ -90,15 +90,57 @@ class UserController extends Controller
         try {
             // Validasi input
             $validated = $request->validate([
-                'nip' => 'required|unique:users,kd_pegawai|max:20',
-                'unitkerja' => 'required|exists:ms_unitkerja,KodeUnit|max:50', // Validasi pilihan dropdown
+                'nip' => 'required|unique:users,kd_pegawai|max:20|numeric',
+                'unitkerja' => 'required|exists:ms_unitkerja,KodeUnit',
                 'nama_pegawai' => 'required|max:50',
-                'username' => 'required|unique:users,usernamePegawai|max:50', // Ganti 'name' dengan 'usernamePegawai'
-                'password' => 'required|min:6|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|max:255',
+                'username' => 'required|unique:users,usernamePegawai|max:50',
+                'password' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|max:255',
                 'email' => 'required|email|max:50',
-                'usercare' => 'required|exists:sysuser,ID_SyUser|max:50',
-                'jabatan' => 'required|exists:jabatan,ID_Jabatan|max:50',
-                'cabang' => 'required|exists:cab_aplikasi,kd|max:50',
+                'usercare' => 'required|exists:sysuser,ID_SyUser',
+                'jabatan' => 'required|exists:jabatan,ID_Jabatan',
+                'cabang' => 'required|exists:cab_aplikasi,kd',
+            ], [
+                // Pesan untuk 'nip'
+                'nip.required' => 'NIP wajib diisi.',
+                'nip.unique' => 'NIP sudah digunakan.',
+                'nip.max' => 'NIP tidak boleh lebih dari 20 karakter.',
+                'nip.numeric' => 'NIP hanya boleh berisi angka.',
+
+                // Pesan untuk 'unitkerja'
+                'unitkerja.required' => 'Unit kerja wajib diisi.',
+                'unitkerja.exists' => 'Unit kerja yang dipilih tidak valid.',
+
+                // Pesan untuk 'nama_pegawai'
+                'nama_pegawai.required' => 'Nama pegawai wajib diisi.',
+                'nama_pegawai.max' => 'Nama pegawai tidak boleh lebih dari 50 karakter.',
+
+                // Pesan untuk 'username'
+                'username.required' => 'Username wajib diisi.',
+                'username.unique' => 'Username sudah digunakan.',
+                'username.max' => 'Username tidak boleh lebih dari 50 karakter.',
+
+                // Pesan untuk 'password'
+                'password.required' => 'Password wajib diisi.',
+                'password.min' => 'Password harus memiliki minimal 6 karakter.',
+                'password.regex' => 'Password harus mengandung huruf kecil, huruf besar, dan angka.',
+                'password.max' => 'Password tidak boleh lebih dari 255 karakter.',
+
+                // Pesan untuk 'email'
+                'email.required' => 'Email wajib diisi.',
+                'email.email' => 'Format email tidak valid.',
+                'email.max' => 'Email tidak boleh lebih dari 50 karakter.',
+
+                // Pesan untuk 'usercare'
+                'usercare.required' => 'User care wajib diisi.',
+                'usercare.exists' => 'User care yang dipilih tidak valid.',
+
+                // Pesan untuk 'jabatan'
+                'jabatan.required' => 'Jabatan wajib diisi.',
+                'jabatan.exists' => 'Jabatan yang dipilih tidak valid.',
+
+                // Pesan untuk 'cabang'
+                'cabang.required' => 'Cabang wajib diisi.',
+                'cabang.exists' => 'Cabang yang dipilih tidak valid.',
             ]);
 
             // Simpan data ke tabel users
@@ -175,15 +217,47 @@ class UserController extends Controller
     {
         // Validasi data
         $request->validate([
-            'nip' => "nullable|unique:users,kd_pegawai,{$id},id",
+            'nip' => "nullable|unique:users,kd_pegawai,{$id},id|max:20|numeric",
             'unitkerja' => 'nullable|exists:ms_unitkerja,KodeUnit',
-            'nama_pegawai' => 'nullable|string',
+            'nama_pegawai' => 'nullable|string|max:50',
             'cabang' => 'nullable|exists:cab_aplikasi,kd',
-            'username' => "nullable|unique:users,usernamePegawai,{$id},id",
+            'username' => "nullable|unique:users,usernamePegawai,{$id},id|max:50",
             'usercare' => 'nullable|exists:sysuser,ID_SyUser',
-            'email' => 'nullable|email',
+            'email' => 'nullable|email|max:50',
             'jabatan' => 'nullable|exists:jabatan,ID_Jabatan',
             'status' => 'nullable|in:0,1',
+        ], [
+            // Pesan error untuk 'nip'
+            'nip.unique' => 'NIP sudah digunakan.',
+            'nip.max' => 'NIP tidak boleh lebih dari 20 karakter.',
+            'nip.numeric' => 'NIP hanya boleh berisi angka.',
+
+            // Pesan error untuk 'unitkerja'
+            'unitkerja.exists' => 'Unit kerja yang dipilih tidak valid.',
+
+            // Pesan error untuk 'nama_pegawai'
+            'nama_pegawai.string' => 'Nama pegawai harus berupa teks.',
+            'nama_pegawai.max' => 'Nama pegawai tidak boleh lebih dari 50 karakter.',
+
+            // Pesan error untuk 'cabang'
+            'cabang.exists' => 'Cabang yang dipilih tidak valid.',
+
+            // Pesan error untuk 'username'
+            'username.unique' => 'Username sudah digunakan.',
+            'username.max' => 'Username tidak boleh lebih dari 50 karakter.',
+
+            // Pesan error untuk 'usercare'
+            'usercare.exists' => 'User care yang dipilih tidak valid.',
+
+            // Pesan error untuk 'email'
+            'email.email' => 'Format email tidak valid.',
+            'email.max' => 'Email tidak boleh lebih dari 50 karakter.',
+
+            // Pesan error untuk 'jabatan'
+            'jabatan.exists' => 'Jabatan yang dipilih tidak valid.',
+
+            // Pesan error untuk 'status'
+            'status.in' => 'Status hanya boleh bernilai 0 atau 1.',
         ]);
 
         // Cari data user lama
@@ -252,7 +326,7 @@ class UserController extends Controller
                 'passwordbaru.required' => 'Password baru harus diisi.',
                 'passwordbaru.confirmed' => 'Password baru harus sesuai dengan konfirmasi password.',
                 'passwordbaru.min' => 'Password baru minimal 6 karakter.',
-                'passwordbaru.regex' => 'Format password tidak sesuai.'
+                'passwordbaru.regex' => 'Password harus mengandung huruf besar, huruf kecil, dan angka.'
             ]);
 
             $user = User::findOrFail($id);
@@ -286,9 +360,6 @@ class UserController extends Controller
                 ->with('openModal', 'resetPasswordModal' . $id);
         }
     }
-
-
-
 
     public function updateAccess(Request $request, $id)
     {

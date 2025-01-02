@@ -13,7 +13,7 @@
            <form action="{{ route('users.resetPassword', $id) }}" method="POST">
                @csrf
                <div class="modal-body">
-                   <p>Apakah Anda yakin ingin mereset password untuk pengguna <strong>{{ $name }}</strong>?</p>
+                   <p>Apakah Anda yakin ingin mereset password untuk user <strong>{{ $name }}</strong>?</p>
                    <div class="form-group">
                        <label for="passwordbaru{{ $id }}">Password Baru</label>
                        <input type="password" name="passwordbaru" id="passwordbaru{{ $id }}" class="form-control @error('passwordbaru') is-invalid @enderror" placeholder="Masukkan password baru">
@@ -41,18 +41,4 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(function() {
-        $(".password-show").click(function(event) {
-            // Cari input yang berada di dalam grup yang sama
-            const input = $(this).siblings(".form-control");
-
-            // Toggle type antara password dan text
-            const type = input.attr("type") === "password" ? "text" : "password";
-            input.attr("type", type);
-
-            // Toggle antara ikon fa-eye dan fa-eye-slash
-            $(this).toggleClass('fa-eye fa-eye-slash');
-        });
-    });
-</script>
+<script src="{{ asset('js/asset.js') }}"></script>

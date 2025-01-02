@@ -14,7 +14,8 @@
                 @csrf
                 <div class="modal-body">
                     <div class="tambah-content" style="display: grid; grid-template-columns: 50% 50%;">
-                        <!-- Nomor Induk Pegawai -->
+
+                        {{-- Nomor Induk Pegawai --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="nomor_induk_pegawai" class="form-label">Nomor Induk Pegawai</label>
@@ -24,7 +25,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <!-- Divisi -->
+
+                        {{-- Divisi --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="divisi" class="form-label">Divisi</label>
@@ -39,7 +41,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <!-- Nama Pegawai -->
+
+                        {{-- Nama Pegawai --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
@@ -49,7 +52,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <!-- Username -->
+
+                        {{-- Username --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="username" class="form-label">Username</label>
@@ -59,7 +63,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <!-- Password -->
+
+                        {{-- Password --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="password" class="form-label">Password</label>
@@ -70,7 +75,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <!-- Email -->
+
+                        {{-- Email --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
@@ -80,7 +86,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <!-- User Care -->
+
+                        {{-- Usercare --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="user_care" class="form-label">User Care</label>
@@ -95,7 +102,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <!-- Jabatan -->
+
+                        {{-- Jabatan --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="jabatan" class="form-label">Jabatan</label>
@@ -110,7 +118,8 @@
                                 @enderror
                             </div>
                         </div>
-                        <!-- Cabang -->
+
+                        {{-- Cabang --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="cabang" class="form-label">Cabang</label>
@@ -125,6 +134,7 @@
                                 @enderror
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -138,16 +148,4 @@
 
 {{-- javascript --}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(function(){
-        $(".passwordshow").click(function(event) {
-            $(this).toggleClass('fa-eye fa-eye-slash');
-            var x = $("#password").attr("type"); // mendapatkan tipe input saat ini
-            if(x == "password"){
-                $("#password").attr("type","text");
-            }else{
-                $("#password").attr("type","password");
-            }
-        });
-    });
-</script>
+<script src="{{ asset('js/asset.js') }}"></script>

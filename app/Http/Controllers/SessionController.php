@@ -47,7 +47,7 @@ class SessionController extends Controller
             return redirect('/home');
         } else {
             // Kalau otentikasi gagal
-            return redirect('/')->withErrors('Username dan password yang dimasukkan tidak valid');
+            return redirect('/')->withErrors('Username dan password yang dimasukkan tidak valid')->withInput();
         }
     }
 

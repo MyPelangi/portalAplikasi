@@ -1,3 +1,8 @@
+{{-- ___________________________________ --}}
+{{-- |Email Kedua yang dikirim ke user |
+     |untuk memberikan password baru   | --}}
+{{-- ___________________________________ --}}
+
 <h1>Hai, {{ $name }}</h1>
     <p>Password Anda telah di-reset. Berikut adalah password baru Anda:</p>
     <p><strong>Nama: {{ $name }}</strong></p>

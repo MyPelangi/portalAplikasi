@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header row">
-                    <h5 class="title col-4">Aplikasi Internal</h5>
+                    <h5 class="col-6 title">Aplikasi Internal</h5>
                     <div class="col-4 justify-content-end" id="navigation">
                         <form id="searchForm" action="{{ route('internal') }}" method="get">
                         <div class="input-group">
@@ -32,14 +32,14 @@
                         @foreach($internalApp as $internalApps)
                             <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6">
                                 @if($internalApps->permit === 'enabled')
-                                    <!-- Link aktif jika permit adalah 'enabled' -->
+                                    <!-- Link aktif jika permit adalah 'enabled' dan user memiliki akses-->
                                     <a href="{{ url('/home/' . $internalApps->aplink) }}" target="_blank" class="font-icon-detail">
                                         <span class="now-ui-icons"><i class="fa-solid fa-shield-halved"></i></span>
                                         <span>{{ $internalApps->apnama }}</span>
                                     </a>
                                 @else
-                                    <!-- Link tidak aktif jika permit adalah null -->
-                                    <a href="#" style="pointer-events: none; color: gray;" class="disabled">
+                                    <!-- Link tidak aktif jika permit adalah null atau user tidak memiliki akses -->
+                                    <a href="#" class="disabled" data-tooltip="Anda tidak memiliki akses ke aplikasi ini">
                                         <span class="now-ui-icons"><i class="fa-solid fa-shield-halved"></i></span>
                                         <span>{{ $internalApps->apnama }}</span>
                                     </a>
@@ -54,3 +54,4 @@
     <hr>
     @include('partials/footer')
 @endsection
+

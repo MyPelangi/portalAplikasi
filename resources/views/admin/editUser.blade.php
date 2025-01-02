@@ -13,6 +13,8 @@
                     @csrf
                     @method('PUT')
                     <div class="tambah-content" style="display: grid; grid-template-columns: 50% 50%">
+
+                        {{-- Nomor Induk Pegawai --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="nomor_induk_pegawai" class="form-label">Nomor Induk Pegawai</label>
@@ -22,6 +24,8 @@
                                 @enderror
                             </div>
                         </div>
+
+                        {{-- Divisi --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="divisi" class="form-label">Divisi</label>
@@ -36,6 +40,8 @@
                                 @enderror
                             </div>
                         </div>
+
+                        {{-- Nama Pegawai --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
@@ -45,6 +51,8 @@
                                 @enderror
                             </div>
                         </div>
+
+                        {{-- Cabang --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="cabang" class="form-label">Cabang</label>
@@ -59,6 +67,8 @@
                                 @enderror
                             </div>
                         </div>
+
+                        {{-- Username --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="username" class="form-label">Username</label>
@@ -68,6 +78,8 @@
                                 @enderror
                             </div>
                         </div>
+
+                        {{-- UserCare --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="user_care" class="form-label">User Care</label>
@@ -82,6 +94,8 @@
                                 @enderror
                             </div>
                         </div>
+
+                        {{-- Email --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email" class="form-label">Email</label>
@@ -91,6 +105,8 @@
                                 @enderror
                             </div>
                         </div>
+
+                        {{-- Jabatan --}}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="jabatan" class="form-label">Jabatan</label>
@@ -105,9 +121,11 @@
                                 @enderror
                             </div>
                         </div>
+
+                        {{-- Status pegawai --}}
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="status" class="form-label">Status Akun</label>
+                                <label for="status" class="form-label">Status Pegawai</label>
                                 <select id="status" name="status" class="form-control">
                                     <option value="1" {{ $data->status_p == 1 ? 'selected' : '' }}>Aktif</option>
                                     <option value="0" {{ $data->status_p == 0 ? 'selected' : '' }}>Tidak Aktif</option>

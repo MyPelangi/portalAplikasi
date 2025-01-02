@@ -18,7 +18,7 @@
                         <tr>
                             <td>Username</td>
                             <td style="padding-left: 50px; padding-right: 20px;">:</td>
-                            <td>{{ $data->name }}</td>
+                            <td>{{ $data->usernamePegawai }}</td>
                         </tr>
                         <tr>
                             <td>Cabang</td>
@@ -80,5 +80,4 @@
     </div>
     <hr>
     @include('partials/footer')
-
 @endsection
