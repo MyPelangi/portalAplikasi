@@ -5689,7 +5689,17 @@ Created using IcoMoon - icomoon.io
     transform: translate3d(260px, 0, 0);
   }
 
-    .logincontainer .logintitle{
+    .logincontainer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logobrins,
+    .logobrins img{
+        margin: 0;
+    }
+
+    .logintitle h5, .logintitle .illustration{
         display: none;
     }
 
@@ -5730,9 +5740,19 @@ Created using IcoMoon - icomoon.io
     padding-right: 15px;
   }
 
-  .logobrins {
-    width: 250px;
-  }
+  /* .logincontainer{
+    display: flex;
+    flex-direction: column;
+    }
+
+    .logobrins,
+    .logobrins img{
+        margin: 0;
+    }
+
+    .logintitle h5, .logintitle .illustration{
+        display: none;
+    } */
 }
 
 @media screen and (max-width: 768px) {
@@ -5777,9 +5797,19 @@ Created using IcoMoon - icomoon.io
     display: none;
   }
 
-  .logincontainer .logintitle{
-    display: none;
-}
+    .logincontainer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logobrins,
+    .logobrins img{
+        margin: 0;
+    }
+
+    .logintitle h5, .logintitle .illustration{
+        display: none;
+    }
 }
 
 @media screen and (max-width: 576px) {
@@ -5824,9 +5854,19 @@ Created using IcoMoon - icomoon.io
     display: none;
   }
 
-  .logincontainer .logintitle{
-    display: none;
-}
+    .logincontainer{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .logobrins,
+    .logobrins img{
+        margin: 0;
+    }
+
+    .logintitle h5, .logintitle .illustration{
+        display: none;
+    }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
@@ -6305,12 +6345,6 @@ Created using IcoMoon - icomoon.io
     transition-timing-function: cubic-bezier(0.685, 0.0473, 0.346, 1);
     -webkit-overflow-scrolling: touch;
   }
-  .logobrins {
-    width: 250px;
-    }
-    .logincontainer .logintitle{
-        display: none;
-    }
 }
 
 /* ubah password */
@@ -6342,11 +6376,14 @@ Created using IcoMoon - icomoon.io
 
 .logobrins{
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logobrins img{
     width: 300px;
-    margin: 0 20%;
+
 }
 
 .logintitle h5{

@@ -7,7 +7,7 @@
             <img src="img/logo.png" alt="">
         </div>
         <h5>Portal Aplikasi BRI Asuransi Indonesia</h5>
-        <img style="width:500px;" src="img/illustrasi.svg" alt="">
+        <img class="illustration" style="width:500px;" src="img/illustrasi.svg" alt="">
     </div>
     <div class="login">
         <h3>LOGIN</h3>
