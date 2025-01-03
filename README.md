@@ -10,7 +10,7 @@
 ## About Project
 
 A website used as a portal to access other applications, both internal and external, that can be utilized by employees and administrators.
-PHP version : PHP 8.0.30 (cli)
-Laravel Version : Laravel Framework 8.83.29
-Database : MySQL
-SMTP : Mailtrap
+- PHP version : PHP 8.0.30 (cli)
+- Laravel Version : Laravel Framework 8.83.29
+- Database : MySQL
+- SMTP : Mailtrap
