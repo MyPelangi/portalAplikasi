@@ -3113,13 +3113,13 @@ License - nucleoapp.com/license/
 Created using IcoMoon - icomoon.io
 
 -------------------------------- */
-@font-face {
+/* @font-face {
   font-family: 'Nucleo Outline';
   src: url("../fonts/nucleo-outline.eot");
   src: url("../fonts/nucleo-outline.eot") format("embedded-opentype"), url("../fonts/nucleo-outline.woff2") format("woff2"), url("../fonts/nucleo-outline.woff") format("woff"), url("../fonts/nucleo-outline.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 /*------------------------
 	base class definition
@@ -5076,6 +5076,47 @@ Created using IcoMoon - icomoon.io
 
 .card-header .tambahuser {
     margin: 0 15px;
+}
+
+.filter{
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.filter-item{
+    display: flex;
+    flex-direction: column;
+}
+.filter-item input{
+    height: 33px;
+    border-radius: 30px;
+    border: 1px solid #f96332;
+    padding: 5px 10px;
+}
+
+.detail-logs{
+    display: flex;
+    gap: 30px;
+}
+
+.logs-item{
+    background-color: #2a5788;
+    color: white;
+    border-radius: 3px;
+    width: 200px;
+    padding: 10px 20px;
+}
+
+.logs-item .label{
+    margin-bottom: 0;
+}
+
+.logs-item .total{
+    font-size: 2rem;
+    margin-bottom: 0;
+    /* text-align: right; */
 }
 
 @media screen and (max-width: 991px) {

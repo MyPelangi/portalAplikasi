@@ -15,4 +15,4 @@
         </script> All rights reserved.
       </div>
     </div>
-  </footer>
+</footer>

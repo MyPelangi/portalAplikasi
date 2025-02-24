@@ -53,8 +53,4 @@
         <a href="/forgot-password">forgot password?</a>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{{ asset('js/asset.js') }}"></script>
-
 @endsection

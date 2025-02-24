@@ -15,10 +15,11 @@ use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\ApplicationsController;
 use App\Http\Controllers\UbahPasswordController;
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'log.activity'])->group(function () {
     Route::get('/home', [ApplicationsController::class, 'internal'])->name('internal');
     Route::get('/eksternal', [ApplicationsController::class, 'eksternal'])->name('eksternal');
     Route::get('/ubahpassword', [UbahPasswordController::class, 'index'])->name('ubahpassword');
@@ -26,14 +27,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sesi/logout', [SessionController::class, 'logout'])->name('logout');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'admin', 'log.activity'])->group(function () {
     Route::resource('daftarUser', UserController::class);
     Route::get('/users/{id}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggleStatus');
     Route::post('/users/reset-password/{id}', [UserController::class, 'reset'])->name('users.resetPassword');
     Route::put('/users/{id}/access', [UserController::class, 'updateAccess'])->name('users.updateAccess');
+    Route::get('/activitylog', [ActivityLogController::class, 'index'])->name('activitylog');
+    Route::get('/monitoringlog', [ActivityLogController::class, 'getMonitoringLog'])->name('monitoringLog');
 });
 
-Route::middleware('guest')->group(function () {
+Route::middleware(['guest', 'log.activity'])->group(function () {
     Route::get('/', [SessionController::class, 'index'])->name('login');
     Route::post('/sesi/login', [SessionController::class, 'login']);
     Route::get('/reload-captcha', [CaptchaController::class, 'reloadCaptcha']);
@@ -44,4 +47,3 @@ Route::middleware('guest')->group(function () {
     Route::post('/forgot-password', [PasswordController::class, 'sendResetLink'])->name('forgot-password');
     Route::get('/confirm-reset/{token}', [PasswordController::class, 'confirmReset']);
 });
-

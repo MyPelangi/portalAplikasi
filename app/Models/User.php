@@ -6,6 +6,7 @@ use App\Models\Jabatan;
 use App\Models\UserCare;
 use App\Models\UnitKerja;
 use Illuminate\Support\Str;
+use App\Models\ActivityLogs;
 use App\Models\applications;
 use App\Models\CabangAplikasi;
 use Laravel\Sanctum\HasApiTokens;
@@ -55,6 +56,11 @@ class User extends Authenticatable
     public function applications()
     {
         return $this->belongsToMany(applications::class);
+    }
+
+    public function activitylogs()
+    {
+        return $this->belongsToMany(ActivityLogs::class);
     }
 
     public function unitkerja()

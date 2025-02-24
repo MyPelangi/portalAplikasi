@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
+use App\Models\ActivityLogs;
 use Illuminate\Http\Request;
+use App\Models\CabangAplikasi;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -44,6 +47,25 @@ class SessionController extends Controller
             Auth::login($user); // Login pengguna
             $user->setLoginStatus(true); // Set status_login = 1 dan generate token_login
 
+            $nama_cabang = DB::table('cab_aplikasi')
+                ->where('kd', $user->kd_cabang)
+                ->value('nama_cabang');
+
+            // ✅ Insert login activity into the log table
+            DB::table('activity_log')->insert([
+                'id_user' => $user->id,
+                'kd_pegawai' => $user->kd_pegawai ?? null,
+                'nm_pegawai' => $user->nm_pegawai ?? null,
+                'kd_cabang' => $user->kd_cabang ?? null,
+                'nama_cabang' => $nama_cabang ?? 'Unknown', // Use 'Unknown' if no match is found
+                'type' => 'Login',
+                'ip_user' => $request->ip(),
+                'latitude' => $request->latitude ?? null,
+                'longitude' => $request->longitude ?? null,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
             return redirect('/home');
         } else {
             // Kalau otentikasi gagal
@@ -60,6 +82,25 @@ class SessionController extends Controller
             $user->setLoginStatus(false); // Set status_login = 0 dan hapus token_login
         }
 
+        $nama_cabang = DB::table('cab_aplikasi')
+            ->where('kd', $user->kd_cabang)
+            ->value('nama_cabang');
+
+        // ✅ Insert logout activity into the log table
+        DB::table('activity_log')->insert([
+            'id_user' => $user->id,
+            'kd_pegawai' => $user->kd_pegawai ?? null,
+            'nm_pegawai' => $user->nm_pegawai ?? null,
+            'kd_cabang' => $user->kd_cabang ?? null,
+            'nama_cabang' => $nama_cabang ?? 'Unknown', // Use 'Unknown' if no match is found
+            'type' => 'Logout',
+            'ip_user' => $request->ip(),
+            'latitude' => $request->latitude ?? null,
+            'longitude' => $request->longitude ?? null,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
         Auth::logout();
 
         $request->session()->invalidate();
@@ -67,5 +108,4 @@ class SessionController extends Controller
 
         return redirect('/')->with('status', 'berhasil logout');
     }
-
 }

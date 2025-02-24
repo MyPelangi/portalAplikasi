@@ -134,7 +134,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -146,6 +146,3 @@
     </div>
 </div>
 
-{{-- javascript --}}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{{ asset('js/asset.js') }}"></script>

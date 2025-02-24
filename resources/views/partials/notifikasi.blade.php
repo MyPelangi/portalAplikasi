@@ -22,4 +22,4 @@
     @endif
 </div>
 
-<script src="public/js/now-ui-dashboard.min.js" type="text/javascript"></script>
+<script src="{{ asset('js/now-ui-dashboard.min.js') }}"></script>
