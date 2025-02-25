@@ -90,7 +90,7 @@ class UserController extends Controller
         try {
             // Validasi input
             $validated = $request->validate([
-                'nip' => 'required|unique:users,kd_pegawai|max:20|numeric',
+                'nip' => 'required|unique:users,kd_pegawai|numeric',
                 'unitkerja' => 'required|exists:ms_unitkerja,KodeUnit',
                 'nama_pegawai' => 'required|max:50',
                 'username' => 'required|unique:users,usernamePegawai|max:50',
@@ -103,7 +103,7 @@ class UserController extends Controller
                 // Pesan untuk 'nip'
                 'nip.required' => 'NIP wajib diisi.',
                 'nip.unique' => 'NIP sudah digunakan.',
-                'nip.max' => 'NIP tidak boleh lebih dari 20 karakter.',
+                // 'nip.max' => 'NIP tidak boleh lebih dari 20 karakter.',
                 'nip.numeric' => 'NIP hanya boleh berisi angka.',
 
                 // Pesan untuk 'unitkerja'
@@ -217,7 +217,7 @@ class UserController extends Controller
     {
         // Validasi data
         $request->validate([
-            'nip' => "nullable|unique:users,kd_pegawai,{$id},id|max:20|numeric",
+            'nip' => "nullable|unique:users,kd_pegawai,{$id},id|numeric",
             'unitkerja' => 'nullable|exists:ms_unitkerja,KodeUnit',
             'nama_pegawai' => 'nullable|string|max:50',
             'cabang' => 'nullable|exists:cab_aplikasi,kd',
@@ -229,7 +229,7 @@ class UserController extends Controller
         ], [
             // Pesan error untuk 'nip'
             'nip.unique' => 'NIP sudah digunakan.',
-            'nip.max' => 'NIP tidak boleh lebih dari 20 karakter.',
+            // 'nip.max' => 'NIP tidak boleh lebih dari 20 karakter.',
             'nip.numeric' => 'NIP hanya boleh berisi angka.',
 
             // Pesan error untuk 'unitkerja'

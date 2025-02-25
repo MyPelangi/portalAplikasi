@@ -54,15 +54,15 @@
 @endsection
 
 @push('scripts')
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
+{{-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> --}}
 <script>
     $(document).ready(function () {
     window.routeDaftarUserIndex = "{{ route('daftarUser.index') }}";
     window.errorsExist = @json($errors->any());
     window.openModal = @json(session('openModal'));
 
-    MyApp.init(); // Pastikan semua fitur terinisialisasi
+    // MyApp.init(); // Pastikan semua fitur terinisialisasi
 });
 </script>
 @endpush

@@ -103,13 +103,25 @@ const MyApp = {
             autoclose: true
         });
 
+        // Hancurkan DataTable jika sudah ada
         if ($.fn.DataTable.isDataTable('#activitylog')) {
             $('#activitylog').DataTable().destroy();
-            $('#activitylog').empty();
         }
-        $('#activitylog').DataTable({
+
+        // Inisialisasi DataTables
+        let table = $('#activitylog').DataTable({
             processing: true,
             serverSide: true,
+            dom: "<'row'<'col-sm-9'B><'col-sm-3 text-end'l>>" + // Tombol di atas, dropdown di kanan
+                    "<'row'<'col-sm-12'tr>>" +  // Tabel
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>", // Info dan pagination
+            lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]], // Pilihan jumlah data per halaman
+            buttons: [
+                { extend: 'excelHtml5', text: 'Excel', className: 'btn btn-success' },
+                { extend: 'csvHtml5', text: 'CSV', className: 'btn btn-info' },
+                { extend: 'pdfHtml5', text: 'PDF', className: 'btn btn-danger' },
+                { extend: 'print', text: 'Print', className: 'btn btn-primary' }
+            ],
             ajax: {
                 url: window.activityLogRoute,
                 data: function (d) {
@@ -136,8 +148,9 @@ const MyApp = {
             responsive: true,
         });
 
+        // Event tombol Search
         $('#search').click(function () {
-            $('#activitylog').DataTable().ajax.reload();
+            table.ajax.reload();
         });
 
         // Event tombol Reset
@@ -146,9 +159,10 @@ const MyApp = {
             $('#end_date').val('');
             $('#nama_pegawai').val('');
             $('#nama_cabang').val('');
-            $('#activitylog').DataTable().ajax.reload();
+            table.ajax.reload();
         });
     },
+
 
     // Fungsi utama untuk inisialisasi semua fitur
     init: function () {

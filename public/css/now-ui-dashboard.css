@@ -5098,7 +5098,7 @@ Created using IcoMoon - icomoon.io
 
 .detail-logs{
     display: flex;
-    gap: 30px;
+    gap: 20px;
 }
 
 .logs-item{
@@ -5118,6 +5118,7 @@ Created using IcoMoon - icomoon.io
     margin-bottom: 0;
     /* text-align: right; */
 }
+
 
 @media screen and (max-width: 991px) {
   .profile-photo .profile-photo-small {
@@ -6447,6 +6448,10 @@ Created using IcoMoon - icomoon.io
     display: flex;
     justify-content: center;
     margin-bottom: 5px;
+}
+
+.login a{
+    color: #141E30;
 }
 
 .lupapasstitle{

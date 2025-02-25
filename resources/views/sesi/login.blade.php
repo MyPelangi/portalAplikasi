@@ -13,6 +13,7 @@
         <h3>LOGIN</h3>
         <form action="/sesi/login" method="POST">
             @csrf
+            @include('partials.pesan')
             <div class="mb-3">
                 <div class="form-group">
                     <label for="username" class="form-label">Nama</label>

@@ -27,14 +27,9 @@
                     <p><b>Daftar Log User</b></p>
                 </a>
             </li>
-            <li class="{{ Request::is('monitoringLog') ? 'active' : '' }}">
+            <li class="{{ Request::is('monitoringlog') ? 'active' : '' }}">
                 <a href="/monitoringlog" class="menu-link" data-url="/monitoringlog">
                     <p><b>Monitoring Log</b></p>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="menu-link" data-url="/export-detail-log">
-                    <p><b>Export Detail Log</b></p>
                 </a>
             </li>
             @endif
