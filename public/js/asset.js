@@ -199,8 +199,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 datasets: [{
                     label: 'Jumlah Activity Log',
                     data: Values,
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(0, 50, 130, 0.5)',
+                    borderColor: 'rgb(3, 72, 162)',
                     borderWidth: 2
                 }]
             },

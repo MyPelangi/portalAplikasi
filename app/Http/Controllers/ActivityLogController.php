@@ -11,7 +11,7 @@ class ActivityLogController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = ActivityLogs::with('cabang');
+            $query = ActivityLogs::with('cabang')->orderBy('created_at', 'desc');
 
             // Filter berdasarkan Start Date & End Date
             if (!empty($request->start_date) && !empty($request->end_date)) {
